@@ -8,4 +8,6 @@
 
 (setq-default cursor-type 'bar)
 
+(set-face-attribute 'default nil :height 160)
+
 (provide 'init-ui)

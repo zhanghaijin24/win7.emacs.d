@@ -153,4 +153,14 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 (use-package magit
   :ensure t)
 
+(package-install 'monokai-theme)
+
+(load-theme 'monokai 1)
+
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/awesome-tab"))
+
+(require 'awesome-tab)
+
+(awesome-tab-mode t)
+
 (provide 'init-packages)
