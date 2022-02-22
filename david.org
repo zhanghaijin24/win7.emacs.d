@@ -224,7 +224,7 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 
 ;; 更改显示字体大小 16pt
 ;; http://stackoverflow.com/questions/294664/how-to-set-the-font-size-in-emacs
-(set-face-attribute 'default nil :height 160)
+(set-face-attribute 'default nil :height 200)
 
 
 ;;让鼠标滚动更好用
@@ -265,4 +265,7 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
+
+
+
 #+end_src
