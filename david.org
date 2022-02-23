@@ -266,6 +266,7 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 (setq custom-file (expand-file-name "~/.emacs.d/custom.el"))
 (load custom-file)
 
-
+(setq browse-url-generic-program (executable-find "C:\\Program Files\\Mozilla Firefox\\firefox.exe"))
+(setq browse-url-browser-function 'browse-url-generic)
 
 #+end_src
