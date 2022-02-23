@@ -269,4 +269,12 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
 (setq browse-url-generic-program (executable-find "C:\\Program Files\\Mozilla Firefox\\firefox.exe"))
 (setq browse-url-browser-function 'browse-url-generic)
 
+(require 'server)
+(when (and (>= emacs-major-version 23)
+           (equal window-system 'w32))
+  (defun server-ensure-safe-dir (dir) "Noop" t)) ; Suppress error "directory
+                                                 ; ~/.emacs.d/server is unsafe"
+                                                 ; on windows.
+(server-start)
+
 #+end_src
