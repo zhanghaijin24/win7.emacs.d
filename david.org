@@ -1,4 +1,4 @@
-** my config
+** COMMENT my config
    
 #+begin_src emacs-lisp
 (require 'package)
@@ -276,5 +276,56 @@ Supports exporting consult-grep to wgrep, file to wdeired, and consult-location 
                                                  ; ~/.emacs.d/server is unsafe"
                                                  ; on windows.
 (server-start)
+
+(use-package org-bullets
+ :ensure t 
+ :config 
+ (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
+(custom-set-variables 
+ '(org-directory "~/posts")
+ '(org-default-notes-file (concat org-directory "/notes.org"))
+ '(org-export-html-postamble nil)
+ '(org-hide-leading-stars t)
+ '(org-startup-folded (quote overview))
+ '(org-startup-indented t))
+
+(setq org-file-apps
+      (append '(
+               ("\\.pdf\\'" . "evince %s")
+               ) org-file-apps))
+
+(global-set-key "\C-ca" 'org-agenda)
+
+(use-package org-ac
+ :ensure t 
+ :init (progn
+        (require 'org-ac)
+        (org-ac/config-default)))
+
+(global-set-key (kbd "C-c c") 'org-capture)
+(setq org-agenda-files (list "~/posts/orgfiles/gcal.org"
+                            "~/posts/orgfiles/i.org"
+                            "~/posts/orgfiles/schedule.org"))
+
+(setq org-capture-templates
+                    '(("a" "Appointment" entry (file+headline "~/posts/orgfiles/gcal.org" "Appointments")
+                             "* TODO %?\n:PROPERTIES:\n\n:END:\nDEADLINE: %^T \n %i\n")
+                             ("n" "Note" entry (file+headline "~/posts/orgfiles/notes.org" "Notes")
+                             "* Note %?\n%T")
+                             ("l" "Link" entry (file+headline "~/posts/orgfiles/links.org" "Links")
+                             "* %? %^L %^g \n%T" :prepend t)
+                             ("b" "Blog idea" entry (file+headline "~/posts/orgfiles/i.org" "Blog Topics")
+                             "* %?\n%T" :prepend t)
+                             ("t" "To Do Item" entry (file+headline "~/posts/orgfiles/i.org" "To Do Items")
+                              "* %?\n%T" :prepend)
+
+                             ("j" "Journal" entry (file+datetree "~/posts/journal.org")
+                              "* %?\nEntered on %U\n %i\n %a")
+                             ("s" "Screencast" entry (file "~/posts/orgfiles/screencastnotes.org")
+                              "* %?\n%i\n")))
+
+
+
 
 #+end_src
